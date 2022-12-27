@@ -4,7 +4,7 @@
     <CheatEntry>
       <ID>2</ID>
       <Description>"All weapons (team #1)"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : WA.exe
   Version: 
@@ -31,6 +31,453 @@ code:
   push eax
   mov eax, edx
   add eax, 000064DC
+
+  mov [eax+0x4], ffffffff
+  mov [eax+0x8], ffffffff
+  mov [eax+0xc], ffffffff
+  mov [eax+0x10], ffffffff
+  mov [eax+0x14], ffffffff
+  mov [eax+0x18], ffffffff
+  mov [eax+0x1c], ffffffff
+  mov [eax+0x20], ffffffff
+  mov [eax+0x24], ffffffff
+  mov [eax+0x28], ffffffff
+  mov [eax+0x2c], ffffffff
+  mov [eax+0x30], ffffffff
+  mov [eax+0x34], ffffffff
+  mov [eax+0x38], ffffffff
+  mov [eax+0x3c], ffffffff
+  mov [eax+0x40], ffffffff
+  mov [eax+0x44], ffffffff
+  mov [eax+0x48], ffffffff
+  mov [eax+0x4c], ffffffff
+  mov [eax+0x50], ffffffff
+  mov [eax+0x54], ffffffff
+  mov [eax+0x58], ffffffff
+  mov [eax+0x5c], ffffffff
+  mov [eax+0x60], ffffffff
+  mov [eax+0x64], ffffffff
+  mov [eax+0x68], ffffffff
+  mov [eax+0x6c], ffffffff
+  mov [eax+0x70], ffffffff
+  mov [eax+0x74], ffffffff
+  mov [eax+0x78], ffffffff
+  mov [eax+0x7c], ffffffff
+  mov [eax+0x80], ffffffff
+  mov [eax+0x84], ffffffff
+  mov [eax+0x88], ffffffff
+  mov [eax+0x8c], ffffffff
+  mov [eax+0x90], ffffffff
+  mov [eax+0x94], ffffffff
+  mov [eax+0x98], ffffffff
+  mov [eax+0x9c], ffffffff
+  mov [eax+0xa0], ffffffff
+  mov [eax+0xa4], ffffffff
+  mov [eax+0xa8], ffffffff
+  mov [eax+0xac], ffffffff
+  mov [eax+0xb0], ffffffff
+  mov [eax+0xb4], ffffffff
+  mov [eax+0xb8], ffffffff
+  mov [eax+0xbc], ffffffff
+  mov [eax+0xc0], ffffffff
+  mov [eax+0xc4], ffffffff
+  mov [eax+0xc8], ffffffff
+  mov [eax+0xcc], ffffffff
+  mov [eax+0xd0], ffffffff
+  mov [eax+0xd4], ffffffff
+  mov [eax+0xd8], ffffffff
+  mov [eax+0xdc], ffffffff
+  mov [eax+0xe0], ffffffff
+  mov [eax+0xe4], ffffffff
+  mov [eax+0xe8], ffffffff
+  mov [eax+0xec], ffffffff
+  mov [eax+0xf0], ffffffff
+  mov [eax+0xf4], ffffffff
+  mov [eax+0xf8], ffffffff
+  mov [eax+0xfc], ffffffff
+  mov [eax+0x100], ffffffff
+  mov [eax+0x104], ffffffff
+  mov [eax+0x10c], ffffffff // invis
+  mov [eax+0x114], ffffffff // double damage
+  mov [eax+0x11c], ffffffff // see what is inside crates
+
+  pop eax
+  mov edi,[edx+ecx*4+000064DC]
+  jmp return
+
+address:
+  jmp newmem
+  nop 2
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov edi,[edx+ecx*4+000064DC]
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WA.exe+1680A5
+
+WA.exe+168084: 8D 0C 81              - lea ecx,[ecx+eax*4]
+WA.exe+168087: 03 C8                 - add ecx,eax
+WA.exe+168089: 8B 04 8E              - mov eax,[esi+ecx*4]
+WA.exe+16808C: 85 C0                 - test eax,eax
+WA.exe+16808E: 0F 84 7C 01 00 00     - je WA.exe+168210
+WA.exe+168094: 8B 56 04              - mov edx,[esi+04]
+WA.exe+168097: 8B 4C 96 20           - mov ecx,[esi+edx*4+20]
+WA.exe+16809B: 8B 16                 - mov edx,[esi]
+WA.exe+16809D: 69 C9 8E 00 00 00     - imul ecx,ecx,0000008E
+WA.exe+1680A3: 03 C8                 - add ecx,eax
+// ---------- INJECTING HERE ----------
+WA.exe+1680A5: 8B BC 8A DC 64 00 00  - mov edi,[edx+ecx*4+000064DC]
+// ---------- DONE INJECTING  ----------
+WA.exe+1680AC: 8B 8C 8A F8 65 00 00  - mov ecx,[edx+ecx*4+000065F8]
+WA.exe+1680B3: 85 C9                 - test ecx,ecx
+WA.exe+1680B5: 89 7C 24 18           - mov [esp+18],edi
+WA.exe+1680B9: 8B 7E 64              - mov edi,[esi+64]
+WA.exe+1680BC: 89 7C 24 24           - mov [esp+24],edi
+WA.exe+1680C0: 74 64                 - je WA.exe+168126
+WA.exe+1680C2: BD A0 44 A5 00        - mov ebp,WA.exe+2644A0
+WA.exe+1680C7: 7C 05                 - jl WA.exe+1680CE
+WA.exe+1680C9: BD 08 A2 A5 00        - mov ebp,WA.exe+26A208
+WA.exe+1680CE: 8B 92 10 05 00 00     - mov edx,[edx+00000510]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"All weapons (team #2)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WA.exe
+  Version: 
+  Date   : 2021-12-25
+  Author : lubos
+
+  This script does blah blah blah
+}
+
+define(address,"WA.exe"+1680A5)
+define(bytes,8B BC 8A DC 64 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  push eax
+  mov eax, edx
+  add eax, 000064DC // inventory offset
+  // inventory step between teams = 0x238
+  add eax, 00000238 // team 2
+
+  mov [eax+0x4], ffffffff
+  mov [eax+0x8], ffffffff
+  mov [eax+0xc], ffffffff
+  mov [eax+0x10], ffffffff
+  mov [eax+0x14], ffffffff
+  mov [eax+0x18], ffffffff
+  mov [eax+0x1c], ffffffff
+  mov [eax+0x20], ffffffff
+  mov [eax+0x24], ffffffff
+  mov [eax+0x28], ffffffff
+  mov [eax+0x2c], ffffffff
+  mov [eax+0x30], ffffffff
+  mov [eax+0x34], ffffffff
+  mov [eax+0x38], ffffffff
+  mov [eax+0x3c], ffffffff
+  mov [eax+0x40], ffffffff
+  mov [eax+0x44], ffffffff
+  mov [eax+0x48], ffffffff
+  mov [eax+0x4c], ffffffff
+  mov [eax+0x50], ffffffff
+  mov [eax+0x54], ffffffff
+  mov [eax+0x58], ffffffff
+  mov [eax+0x5c], ffffffff
+  mov [eax+0x60], ffffffff
+  mov [eax+0x64], ffffffff
+  mov [eax+0x68], ffffffff
+  mov [eax+0x6c], ffffffff
+  mov [eax+0x70], ffffffff
+  mov [eax+0x74], ffffffff
+  mov [eax+0x78], ffffffff
+  mov [eax+0x7c], ffffffff
+  mov [eax+0x80], ffffffff
+  mov [eax+0x84], ffffffff
+  mov [eax+0x88], ffffffff
+  mov [eax+0x8c], ffffffff
+  mov [eax+0x90], ffffffff
+  mov [eax+0x94], ffffffff
+  mov [eax+0x98], ffffffff
+  mov [eax+0x9c], ffffffff
+  mov [eax+0xa0], ffffffff
+  mov [eax+0xa4], ffffffff
+  mov [eax+0xa8], ffffffff
+  mov [eax+0xac], ffffffff
+  mov [eax+0xb0], ffffffff
+  mov [eax+0xb4], ffffffff
+  mov [eax+0xb8], ffffffff
+  mov [eax+0xbc], ffffffff
+  mov [eax+0xc0], ffffffff
+  mov [eax+0xc4], ffffffff
+  mov [eax+0xc8], ffffffff
+  mov [eax+0xcc], ffffffff
+  mov [eax+0xd0], ffffffff
+  mov [eax+0xd4], ffffffff
+  mov [eax+0xd8], ffffffff
+  mov [eax+0xdc], ffffffff
+  mov [eax+0xe0], ffffffff
+  mov [eax+0xe4], ffffffff
+  mov [eax+0xe8], ffffffff
+  mov [eax+0xec], ffffffff
+  mov [eax+0xf0], ffffffff
+  mov [eax+0xf4], ffffffff
+  mov [eax+0xf8], ffffffff
+  mov [eax+0xfc], ffffffff
+  mov [eax+0x100], ffffffff
+  mov [eax+0x104], ffffffff
+  mov [eax+0x10c], ffffffff // invis
+  mov [eax+0x114], ffffffff // double damage
+  mov [eax+0x11c], ffffffff // see what is inside crates
+
+  pop eax
+  mov edi,[edx+ecx*4+000064DC]
+  jmp return
+
+address:
+  jmp newmem
+  nop 2
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov edi,[edx+ecx*4+000064DC]
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WA.exe+1680A5
+
+WA.exe+168084: 8D 0C 81              - lea ecx,[ecx+eax*4]
+WA.exe+168087: 03 C8                 - add ecx,eax
+WA.exe+168089: 8B 04 8E              - mov eax,[esi+ecx*4]
+WA.exe+16808C: 85 C0                 - test eax,eax
+WA.exe+16808E: 0F 84 7C 01 00 00     - je WA.exe+168210
+WA.exe+168094: 8B 56 04              - mov edx,[esi+04]
+WA.exe+168097: 8B 4C 96 20           - mov ecx,[esi+edx*4+20]
+WA.exe+16809B: 8B 16                 - mov edx,[esi]
+WA.exe+16809D: 69 C9 8E 00 00 00     - imul ecx,ecx,0000008E
+WA.exe+1680A3: 03 C8                 - add ecx,eax
+// ---------- INJECTING HERE ----------
+WA.exe+1680A5: 8B BC 8A DC 64 00 00  - mov edi,[edx+ecx*4+000064DC]
+// ---------- DONE INJECTING  ----------
+WA.exe+1680AC: 8B 8C 8A F8 65 00 00  - mov ecx,[edx+ecx*4+000065F8]
+WA.exe+1680B3: 85 C9                 - test ecx,ecx
+WA.exe+1680B5: 89 7C 24 18           - mov [esp+18],edi
+WA.exe+1680B9: 8B 7E 64              - mov edi,[esi+64]
+WA.exe+1680BC: 89 7C 24 24           - mov [esp+24],edi
+WA.exe+1680C0: 74 64                 - je WA.exe+168126
+WA.exe+1680C2: BD A0 44 A5 00        - mov ebp,WA.exe+2644A0
+WA.exe+1680C7: 7C 05                 - jl WA.exe+1680CE
+WA.exe+1680C9: BD 08 A2 A5 00        - mov ebp,WA.exe+26A208
+WA.exe+1680CE: 8B 92 10 05 00 00     - mov edx,[edx+00000510]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"All weapons (team #3)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WA.exe
+  Version: 
+  Date   : 2021-12-25
+  Author : lubos
+
+  This script does blah blah blah
+}
+
+define(address,"WA.exe"+1680A5)
+define(bytes,8B BC 8A DC 64 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  push eax
+  mov eax, edx
+  add eax, 000064DC // inventory offset
+  // inventory step between teams = 0x238
+  add eax, 00000238 // team 3
+  add eax, 00000238 // team 3
+
+  mov [eax+0x4], ffffffff
+  mov [eax+0x8], ffffffff
+  mov [eax+0xc], ffffffff
+  mov [eax+0x10], ffffffff
+  mov [eax+0x14], ffffffff
+  mov [eax+0x18], ffffffff
+  mov [eax+0x1c], ffffffff
+  mov [eax+0x20], ffffffff
+  mov [eax+0x24], ffffffff
+  mov [eax+0x28], ffffffff
+  mov [eax+0x2c], ffffffff
+  mov [eax+0x30], ffffffff
+  mov [eax+0x34], ffffffff
+  mov [eax+0x38], ffffffff
+  mov [eax+0x3c], ffffffff
+  mov [eax+0x40], ffffffff
+  mov [eax+0x44], ffffffff
+  mov [eax+0x48], ffffffff
+  mov [eax+0x4c], ffffffff
+  mov [eax+0x50], ffffffff
+  mov [eax+0x54], ffffffff
+  mov [eax+0x58], ffffffff
+  mov [eax+0x5c], ffffffff
+  mov [eax+0x60], ffffffff
+  mov [eax+0x64], ffffffff
+  mov [eax+0x68], ffffffff
+  mov [eax+0x6c], ffffffff
+  mov [eax+0x70], ffffffff
+  mov [eax+0x74], ffffffff
+  mov [eax+0x78], ffffffff
+  mov [eax+0x7c], ffffffff
+  mov [eax+0x80], ffffffff
+  mov [eax+0x84], ffffffff
+  mov [eax+0x88], ffffffff
+  mov [eax+0x8c], ffffffff
+  mov [eax+0x90], ffffffff
+  mov [eax+0x94], ffffffff
+  mov [eax+0x98], ffffffff
+  mov [eax+0x9c], ffffffff
+  mov [eax+0xa0], ffffffff
+  mov [eax+0xa4], ffffffff
+  mov [eax+0xa8], ffffffff
+  mov [eax+0xac], ffffffff
+  mov [eax+0xb0], ffffffff
+  mov [eax+0xb4], ffffffff
+  mov [eax+0xb8], ffffffff
+  mov [eax+0xbc], ffffffff
+  mov [eax+0xc0], ffffffff
+  mov [eax+0xc4], ffffffff
+  mov [eax+0xc8], ffffffff
+  mov [eax+0xcc], ffffffff
+  mov [eax+0xd0], ffffffff
+  mov [eax+0xd4], ffffffff
+  mov [eax+0xd8], ffffffff
+  mov [eax+0xdc], ffffffff
+  mov [eax+0xe0], ffffffff
+  mov [eax+0xe4], ffffffff
+  mov [eax+0xe8], ffffffff
+  mov [eax+0xec], ffffffff
+  mov [eax+0xf0], ffffffff
+  mov [eax+0xf4], ffffffff
+  mov [eax+0xf8], ffffffff
+  mov [eax+0xfc], ffffffff
+  mov [eax+0x100], ffffffff
+  mov [eax+0x104], ffffffff
+  mov [eax+0x10c], ffffffff // invis
+  mov [eax+0x114], ffffffff // double damage
+  mov [eax+0x11c], ffffffff // see what is inside crates
+
+  pop eax
+  mov edi,[edx+ecx*4+000064DC]
+  jmp return
+
+address:
+  jmp newmem
+  nop 2
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov edi,[edx+ecx*4+000064DC]
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: WA.exe+1680A5
+
+WA.exe+168084: 8D 0C 81              - lea ecx,[ecx+eax*4]
+WA.exe+168087: 03 C8                 - add ecx,eax
+WA.exe+168089: 8B 04 8E              - mov eax,[esi+ecx*4]
+WA.exe+16808C: 85 C0                 - test eax,eax
+WA.exe+16808E: 0F 84 7C 01 00 00     - je WA.exe+168210
+WA.exe+168094: 8B 56 04              - mov edx,[esi+04]
+WA.exe+168097: 8B 4C 96 20           - mov ecx,[esi+edx*4+20]
+WA.exe+16809B: 8B 16                 - mov edx,[esi]
+WA.exe+16809D: 69 C9 8E 00 00 00     - imul ecx,ecx,0000008E
+WA.exe+1680A3: 03 C8                 - add ecx,eax
+// ---------- INJECTING HERE ----------
+WA.exe+1680A5: 8B BC 8A DC 64 00 00  - mov edi,[edx+ecx*4+000064DC]
+// ---------- DONE INJECTING  ----------
+WA.exe+1680AC: 8B 8C 8A F8 65 00 00  - mov ecx,[edx+ecx*4+000065F8]
+WA.exe+1680B3: 85 C9                 - test ecx,ecx
+WA.exe+1680B5: 89 7C 24 18           - mov [esp+18],edi
+WA.exe+1680B9: 8B 7E 64              - mov edi,[esi+64]
+WA.exe+1680BC: 89 7C 24 24           - mov [esp+24],edi
+WA.exe+1680C0: 74 64                 - je WA.exe+168126
+WA.exe+1680C2: BD A0 44 A5 00        - mov ebp,WA.exe+2644A0
+WA.exe+1680C7: 7C 05                 - jl WA.exe+1680CE
+WA.exe+1680C9: BD 08 A2 A5 00        - mov ebp,WA.exe+26A208
+WA.exe+1680CE: 8B 92 10 05 00 00     - mov edx,[edx+00000510]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"All weapons (team #4)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WA.exe
+  Version: 
+  Date   : 2021-12-25
+  Author : lubos
+
+  This script does blah blah blah
+}
+
+define(address,"WA.exe"+1680A5)
+define(bytes,8B BC 8A DC 64 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  push eax
+  mov eax, edx
+  add eax, 000064DC // inventory offset
+  // inventory step between teams = 0x238
+  add eax, 00000238
+  add eax, 00000238
+  add eax, 00000238
 
   mov [eax+0x4], ffffffff
   mov [eax+0x8], ffffffff
